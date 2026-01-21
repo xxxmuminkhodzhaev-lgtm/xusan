@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ozodbek Zayniddinov</title>  <!-- ✅ SEO va Social preview -->  <meta name="description" content="Ozodbek Zayniddinov - Fullstack dasturchi va Cybersecurity mutaxassisi. Portfolio, API xizmatlar, Telegram botlar va zamonaviy web-loyihalar to‘plami.">
+  <meta property="og:title" content="Ozodbek Zayniddinov - Portfolio">
+  <meta property="og:description" content="Dasturchi portfeli: API loyihalar, kiberxavfsizlik vositalari, Telegram botlar va zamonaviy web ilovalar.">
+  <meta property="og:image" content="https://ozodbekdev.uz/rasm/rasm.jpg">
+  <meta property="og:url" content="https://ozodbekdev.uz">
+  <meta name="twitter:card" content="summary_large_image">  <link rel="icon" type="image/png" href="/rasm/logo.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+    body { background: #0e0e0e; color: #e0e0e0; overflow-x: hidden; }
+    header { position: fixed; width: 100%; display: flex; justify-content: flex-end; align-items: center; padding: 1rem 2rem; z-index: 1000; background-color: rgba(0, 0, 0, 0.7); }
+    .menu-btn { display: none; flex-direction: column; justify-content: space-between; width: 30px; height: 20px; cursor: pointer; }
+    .menu-btn div { background: #00aaff; height: 4px; border-radius: 2px; transition: 0.4s; }
+    nav { display: flex; gap: 2rem; }
+    nav a { color: #e0e0e0; text-decoration: none; font-weight: bold; transition: 0.3s; }
+    nav a:hover { color: #00aaff; }
+    .container { padding: 6rem 2rem 2rem; text-align: center; max-width: 1000px; margin: auto; }
+    section { margin: 5rem 0; animation: fadeInUp 0.8s ease both; }
+    @keyframes fadeInUp { from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);} }
+    #about, #contact, #projects { padding: 1rem; border: 1px solid rgba(0, 170, 255, 0.3); border-radius: 15px; background: rgba(255, 255, 255, 0.06); backdrop-filter: blur(12px); box-shadow: 0 4px 20px rgba(0, 170, 255, 0.1); }
+    #music-toggle { position: fixed; top: 90px; right: 20px; z-index: 1001; background: rgba(0, 170, 255, 0.2); border: none; padding: 10px; border-radius: 50%; color: white; cursor: pointer; backdrop-filter: blur(5px); font-size: 1.2rem; transition: background 0.3s; }
+    #music-toggle:hover { background: rgba(0, 170, 255, 0.5); }
+    #home img { border-radius: 50%; box-shadow: 0 0 20px #00aaff; width: 160px; height: 160px; object-fit: cover; margin-bottom: 1rem; }
+    .typewriter { font-weight: bold; color: #00aaff; white-space: nowrap; overflow: hidden; border-right: 2px solid #00aaff; animation: typing 4s steps(40, end) infinite alternate, blink 0.7s infinite; max-width: 100%; }
+    @keyframes typing { from { width: 0 } to { width: 100% } }
+    @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #00aaff; } }
+    .projects-carousel { overflow-x: auto; scroll-snap-type: x mandatory; display: flex; gap: 1.8rem; padding: 1rem 0; margin-top: 1rem; }
+    .carousel-track { display: flex; gap: 1.8rem; }
+    .project { flex: 0 0 360px; scroll-snap-align: center; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 170, 255, 0.4); backdrop-filter: blur(10px); padding: 2rem; border-radius: 12px; min-height: 160px; transition: 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 6px 12px rgba(0, 170, 255, 0.08); }
+    .project:hover { transform: translateY(-4px); background: rgba(0, 170, 255, 0.05); }
+    .project a { color: #00aaff; font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: bold; text-decoration: none; }
+    .socials { display: flex; justify-content: center; gap: 1rem; }
+    .socials a { color: #00aaff; font-size: 1.5rem; transition: 0.3s; }
+    .socials a:hover { color: #ffffff; }
+    .contact input, .contact textarea { width: 100%; padding: 1rem; margin: 0.5rem 0; border: none; border-radius: 5px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 170, 255, 0.3); backdrop-filter: blur(10px); color: #e0e0e0; }
+    .contact button { padding: 1rem 2rem; border: none; background: #00aaff; color: #fff; font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+    .contact button:hover { background: #0077cc; }
+    canvas#background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+    @media (max-width: 768px) { .menu-btn { display: flex; } nav { position: fixed; top: 70px; right: -100%; flex-direction: column; background: rgba(0, 0, 0, 0.9); padding: 1rem; border-radius: 8px; transition: 0.3s; } nav.active { right: 20px; } }
+  </style></head>
+<body>
+  <canvas id="background"></canvas>
+  <audio id="bg-music" src="https://ozodbekdev.uz/music/music.mp3" autoplay loop muted></audio>
+  <button id="music-toggle" onclick="toggleMusic()" title="Musiqa yoqilgan/pauza">
+    <i id="music-icon" class="fas fa-volume-mute"></i>
+  </button>
+  <header>
+    <div class="menu-btn" onclick="toggleMenu(this)">
+      <div></div><div></div><div></div>
+    </div>
+    <nav>
+      <a href="#home">Bosh sahifa</a>
+      <a href="#about">Haqida</a>
+      <a href="#projects">Loyihalar</a>
+      <a href="https://ozodbekdev.uz/xizmatlar">Xizmatlar</a>
+      <a href="#socials">Ijtimoiy tarmoqlar</a>
+      <a href= "https://ozodbekdev.uz/api">API xizmatlar</a>
+      <a href="#contact">Xabar qoldirish</a>
+    </nav>
+  </header>
+  <div class="container">
+    <section id="home">
+      <img src="https://ozodbekdev.uz/rasm/rasm.jpg" alt="Rasim">
+      <h1>Salom, men Ozodbek Zayniddinov</h1>
+      <p class="typewriter">Fullstack dasturchi, Cybersecurity specialist</p>
+    </section>
+    <section id="about">
+      <h2>Haqida</h2>
+      <p>Men Ozodbek Zayniddinov — web dasturlash va kiberxavfsizlik yo‘nalishlarida faoliyat yuritayotgan mustaqil dasturchiman. So‘nggi yillarda ko‘plab Telegram botlar, API servislar, web ilovalar va avtomatlashtirilgan tizimlarni ishlab chiqdim. Ishlarimda Laravel, PHP, Python, MySQL, Redis, Docker, WebSocket, Telegram API kabi texnologiyalardan foydalanaman.
+
+Shuningdek, <b>@uzcodingblog</b> Telegram kanalim orqali dasturchilar uchun foydali postlar, kod namunalari va real tajribalarga asoslangan maslahatlar bilan bo‘lishib boraman. Bu blog — nafaqat bilim ulashish, balki o‘z tajribamni jamlash uchun ham maydon bo‘lib xizmat qiladi.
+</p>
+    </section>
+    <section id="projects">
+      <h2>Loyihalar</h2>
+      <div class="projects-carousel">
+        <div class="carousel-track">
+          <div class="project"><a href="https://ozodbekdev.uz/api"> API website </a><p>bepul va mukammal tuzilgan turli xil API havolalar taqdim qiluvchi sayt (dasturchilar uchun)</p></div>
+          <div class="project"><a href="https://ozodbekdev.uz/whether"> Ob-havo malumotlari</a><p>Oʻzbekistonning har qanday nuqtasidagi bir haftalik ob havo malumotlarini taqdim qiluvchi website</p></div>
+          <div class="project"><a href="#"> Web Scanner Tool</a><p>Sayt xavfsizligini tekshiruvchi va zaifliklarni aniqlovchi tahlil vositasi.</p></div>
+          <div class="project"><a href="#"> JSON REST API</a><p>Frontend ilovalar bilan tezkor ishlovchi xavfsiz va sodda JSON API servisi.</p></div>
+          <div class="project"><a href="#"> Admin Panel</a><p>Foydalanuvchi boshqaruvi va tizim statistikasi uchun kuchli boshqaruv paneli.</p></div>
+          <div class="project"><a href="#"> Real-time Chat App</a><p>WebSocket va Socket.io asosida yaratilgan onlayn muloqot dasturi.</p></div>
+        </div>
+      </div>
+    </section>
+    <section id="socials">
+      <h2>Ijtimoiy tarmoqlar</h2>
+      <div class="socials">
+        <a href="https://t.me/ozodbek_o4_l5" target="_blank"><i class="fab fa-telegram"></i></a>
+        <a href="https://instagram.com/ozodbek_o4_o5" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/ozodbek0405" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+    </section>
+    <section id="contact">
+      <h2>Xabar qoldiring</h2>
+      <div class="contact">
+        <input type="text" id="name" placeholder="Ismingiz">
+        <textarea id="message" placeholder="Xabaringiz..."></textarea>
+        <button onclick="sendEmail()">Yuborish</button>
+      </div>
+    </section>
+  </div>
+  <script>
+    function toggleMenu(btn) {
+      btn.classList.toggle('open');
+      document.querySelector('nav').classList.toggle('active');
+      const divs = btn.querySelectorAll('div');
+      if (btn.classList.contains('open')) {
+        divs[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        divs[1].style.opacity = '0';
+        divs[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+      } else {
+        divs.forEach(d => { d.style.transform = 'none'; d.style.opacity = '1'; });
+      }
+    }
+    function sendEmail() {
+      const name = document.getElementById('name').value;
+      const message = document.getElementById('message').value;
+      const body = `Salom, men ${name}.%0A%0A${message}`;
+      window.location.href = `mailto:ozodbek04052008@gmail.com?subject=Portfolio%20dan%20xabar&body=${body}`;
+    }
+    const canvas = document.getElementById('background');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let particles = [];
+    const num = 100;
+    for (let i = 0; i < num; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 1,
+        vy: (Math.random() - 0.5) * 1
+      });
+    }
+    function toggleMusic() {
+      const music = document.getElementById("bg-music");
+      const icon = document.getElementById("music-icon");
+      if (music.muted) {
+        music.muted = false;
+        music.play();
+        icon.classList.remove("fa-volume-mute");
+        icon.classList.add("fa-volume-up");
+      } else {
+        music.muted = true;
+        music.pause();
+        icon.classList.remove("fa-volume-up");
+        icon.classList.add("fa-volume-mute");
+      }
+    }
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < num; i++) {
+        let p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = '#00aaff';
+        ctx.fill();
+        for (let j = i + 1; j < num; j++) {
+          let q = particles[j];
+          let dx = p.x - q.x;
+          let dy = p.y - q.y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = 'rgba(0, 170, 255, 0.2)';
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>
